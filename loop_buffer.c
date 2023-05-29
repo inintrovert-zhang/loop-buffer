@@ -213,7 +213,7 @@ s32 LoopBuffer_Enqueue(LOOP_BUFFER_DEF *p_loop_buf,const u8 *p_buf, u16 buf_len)
     wr_pos = GetNextPos(p_loop_buf, wr_pos);
 
     u16 back_left_len = p_loop_buf->BufSize - wr_pos;
-    if(back_left_len >= buf_len)
+    if(back_left_len > buf_len)
     {
         memcpy(&p_loop_buf->pBuf[wr_pos], p_buf, buf_len);
         wr_pos += buf_len;
@@ -288,7 +288,7 @@ s32 LoopBuffer_Dequeue(LOOP_BUFFER_DEF *p_loop_buf,u8 *p_buf, u16 buf_len)
 
     //¸üÐÂdatstartpos
     back_left_len = p_loop_buf->BufSize - rd_pos;
-    if(back_left_len >= dat_len)
+    if(back_left_len > dat_len)
     {
         rd_pos += dat_len;
     }
