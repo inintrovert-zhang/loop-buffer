@@ -221,7 +221,7 @@ s32 LoopBuffer_Enqueue(LOOP_BUFFER_DEF *p_loop_buf,const u8 *p_buf, u16 buf_len)
     else
     {
         memcpy(&p_loop_buf->pBuf[wr_pos], p_buf, back_left_len);
-        memcpy(&p_loop_buf->pBuf[0], p_buf, buf_len - back_left_len);
+        memcpy(&p_loop_buf->pBuf[0], p_buf + back_left_len, buf_len - back_left_len);
         wr_pos = buf_len - back_left_len; 
     }
     p_loop_buf->BlankStartPos = wr_pos;
@@ -283,7 +283,7 @@ s32 LoopBuffer_Dequeue(LOOP_BUFFER_DEF *p_loop_buf,u8 *p_buf, u16 buf_len)
     else
     {
         memcpy(p_buf, &p_loop_buf->pBuf[rd_pos], back_left_len);
-        memcpy(p_buf, &p_loop_buf->pBuf[0], rd_len - back_left_len);
+        memcpy(p_buf + back_left_len, &p_loop_buf->pBuf[0], rd_len - back_left_len);
     }  
 
     //¸üĞÂdatstartpos
